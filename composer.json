@@ -1,0 +1,11 @@
+{
+  "require": {
+      "irazasyed/telegram-bot-sdk": "3.*@dev",
+      "symfony/dotenv": "^4.2"
+    },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Bot;
+
+use App\Bot\Role\Admin\PrivateChat as Admin;
+use App\Bot\Role\User\PrivateChat as User;
+use App\Handler;
+use App\Storage\DB;
+
+class CommonChatHandler
+{
+    private $bot;
+
+    private $db;
+
+    public function __construct(Handler $bot, DB $db)
+    {
+        $this->bot = $bot;
+        $this->db = $db;
+    }
+
+    public function start()
+    {
+        if ($this->bot->isAdminOnGroupChat()) {
+            (new Admin($this->bot, $this->db))->start();
+        } else {
+            (new User($this->bot, $this->db))->start();
+        }
+    }
+}
